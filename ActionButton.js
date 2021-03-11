@@ -48,7 +48,7 @@ export default class ActionButton extends Component {
 
   getActionContainerStyle() {
     const {alignItems, justifyContent} = alignMap[this.props.position];
-    return [styles.overlay, styles.actionContainer, this.props.absolutePosition,  {
+    return [styles.overlay, styles.actionContainer, this.props.customContainerStyles,  {
       alignItems,
       justifyContent,
     }];
@@ -205,7 +205,7 @@ export default class ActionButton extends Component {
 
   render() {
     let backdrop;
-    if (this.state.active) {
+    if (this.state.active && this.props.useBackdrop) {
       backdrop = (
         <TouchableWithoutFeedback
           style={styles.overlay}
@@ -265,7 +265,8 @@ ActionButton.propTypes = {
   radius: PropTypes.number,
   children: PropTypes.node,
   position: PropTypes.oneOf(['left', 'center', 'right']),
-  absolutePosition: PropTypes.object
+  customContainerStyles: PropTypes.object,
+  useBackdrop: PropTypes.bool
 };
 
 ActionButton.defaultProps = {
