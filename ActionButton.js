@@ -1,14 +1,5 @@
-import React, {
-  Component,
-} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Animated,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import React, {Component,} from 'react';
+import {Animated, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, View,} from 'react-native';
 import PropTypes from 'prop-types';
 import ActionButtonItem from './ActionButtonItem';
 
@@ -57,7 +48,7 @@ export default class ActionButton extends Component {
 
   getActionContainerStyle() {
     const {alignItems, justifyContent} = alignMap[this.props.position];
-    return [styles.overlay, styles.actionContainer, {
+    return [styles.overlay, styles.actionContainer, this.props.absolutePosition,  {
       alignItems,
       justifyContent,
     }];
@@ -274,6 +265,7 @@ ActionButton.propTypes = {
   radius: PropTypes.number,
   children: PropTypes.node,
   position: PropTypes.oneOf(['left', 'center', 'right']),
+  absolutePosition: PropTypes.object
 };
 
 ActionButton.defaultProps = {
