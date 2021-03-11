@@ -286,6 +286,8 @@ ActionButton.defaultProps = {
   radius: 100,
   btnOutRange: 'rgba(0,0,0,1)',
   btnOutRangeTxt: 'rgba(255,255,255,1)',
+  customContainerStyles: {},
+  useBackdrop: false
 };
 
 const styles = StyleSheet.create({
