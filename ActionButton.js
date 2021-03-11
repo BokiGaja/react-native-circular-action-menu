@@ -109,6 +109,7 @@ export default class ActionButton extends Component {
             style={
               [
                 styles.btn,
+                this.props.iconShadowStyles,
                 {
                   width: this.props.size,
                   height: this.props.size,
@@ -266,7 +267,8 @@ ActionButton.propTypes = {
   children: PropTypes.node,
   position: PropTypes.oneOf(['left', 'center', 'right']),
   customContainerStyles: PropTypes.object,
-  useBackdrop: PropTypes.bool
+  useBackdrop: PropTypes.bool,
+  iconShadowStyles: PropTypes.object
 };
 
 ActionButton.defaultProps = {
@@ -287,7 +289,8 @@ ActionButton.defaultProps = {
   btnOutRange: 'rgba(0,0,0,1)',
   btnOutRangeTxt: 'rgba(255,255,255,1)',
   customContainerStyles: {},
-  useBackdrop: false
+  useBackdrop: false,
+  iconShadowStyles: {}
 };
 
 const styles = StyleSheet.create({
