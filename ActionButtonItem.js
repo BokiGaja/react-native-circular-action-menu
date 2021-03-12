@@ -38,7 +38,7 @@ export default class ActionButtonItem extends Component {
             outputRange: [0, 1],
           }) },
       ]
-    } : {};
+    } : { top: offsetY, left: offsetX };
     return (
       <Animated.View
         style={[{
