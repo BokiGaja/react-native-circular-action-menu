@@ -14,35 +14,37 @@ export default class ActionButtonItem extends Component {
   render() {
     const offsetX = this.props.radius * Math.cos(this.props.angle);
     const offsetY = this.props.radius * Math.sin(this.props.angle);
+    const animationStyles = this.props.displayAnimation ? {
+      opacity: this.props.anim,
+      transform: [
+        {
+          translateY: this.props.anim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, offsetY],
+          }) },
+        {
+          translateX: this.props.anim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, offsetX],
+          }) },
+        {
+          rotate: this.props.anim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [`${this.props.startDegree}deg`, `${this.props.endDegree}deg`],
+          }) },
+        {
+          scale: this.props.anim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, 1],
+          }) },
+      ]
+    } : {};
     return (
       <Animated.View
         style={[{
-          opacity: this.props.anim,
           width: this.props.size,
           height: this.props.size,
-          transform: [
-            {
-              translateY: this.props.anim.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, offsetY],
-              }) },
-            {
-              translateX: this.props.anim.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, offsetX],
-              }) },
-            {
-              rotate: this.props.anim.interpolate({
-                inputRange: [0, 1],
-                outputRange: [`${this.props.startDegree}deg`, `${this.props.endDegree}deg`],
-              }) },
-            {
-              scale: this.props.anim.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, 1],
-              }) },
-          ]
-        }]}
+        }, animationStyles]}
       >
         <TouchableOpacity style={{flex:1}} activeOpacity={this.props.activeOpacity || 0.85} onPress={this.props.onPress}>
           <View
@@ -59,7 +61,6 @@ export default class ActionButtonItem extends Component {
       </Animated.View>
     );
   }
-
 }
 
 ActionButtonItem.propTypes = {
@@ -70,10 +71,10 @@ ActionButtonItem.propTypes = {
   children: PropTypes.node.isRequired,
   startDegree: PropTypes.number,
   endDegree: PropTypes.number,
+  displayAnimation: PropTypes.boolean
 };
 
 ActionButtonItem.defaultProps = {
-  onPress: () => {},
   startDegree: 0,
   endDegree: 720
 };

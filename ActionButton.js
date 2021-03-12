@@ -184,6 +184,8 @@ export default class ActionButton extends Component {
               position={this.props.position}
               anim={this.state.anim}
               size={this.props.itemSize}
+              active={this.props.active}
+              displayAnimation={this.props.displayAnimation}
               radius={this.props.radius}
               angle={startRadian + index * offset}
               btnColor={this.props.btnOutRange}
@@ -268,7 +270,8 @@ ActionButton.propTypes = {
   position: PropTypes.oneOf(['left', 'center', 'right']),
   customContainerStyles: PropTypes.object,
   useBackdrop: PropTypes.bool,
-  iconShadowStyles: PropTypes.object
+  iconShadowStyles: PropTypes.object,
+  displayAnimation: PropTypes.bool
 };
 
 ActionButton.defaultProps = {
@@ -290,7 +293,8 @@ ActionButton.defaultProps = {
   btnOutRangeTxt: 'rgba(255,255,255,1)',
   customContainerStyles: {},
   useBackdrop: false,
-  iconShadowStyles: {}
+  iconShadowStyles: {},
+  displayAnimation: true
 };
 
 const styles = StyleSheet.create({
