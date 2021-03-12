@@ -10,8 +10,9 @@ import {
 import PropTypes from 'prop-types';
 
 export default class ActionButtonItem extends Component {
-
   render() {
+    if (!this.props.active) return null;
+
     const offsetX = this.props.radius * Math.cos(this.props.angle);
     const offsetY = this.props.radius * Math.sin(this.props.angle);
     const animationStyles = this.props.displayAnimation ? {
@@ -39,6 +40,7 @@ export default class ActionButtonItem extends Component {
           }) },
       ]
     } : { top: offsetY, left: offsetX };
+
     return (
       <Animated.View
         style={[{
@@ -46,7 +48,10 @@ export default class ActionButtonItem extends Component {
           height: this.props.size,
         }, animationStyles]}
       >
-        <TouchableOpacity style={{flex:1}} activeOpacity={this.props.activeOpacity || 0.85} onPress={this.props.onPress}>
+        <TouchableOpacity
+          style={{flex:1}} activeOpacity={this.props.activeOpacity || 0.85}
+          onPress={this.props.onPress}
+        >
           <View
             style={[styles.actionButton,{
               width: this.props.size,
